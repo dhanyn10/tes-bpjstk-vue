@@ -24,7 +24,7 @@
                 </b-form-group>
                 <b-form-group>
                   <b-form-input
-                    type="text"
+                    type="date"
                     v-model="tanggalLahir"
                     placeholder="Tanggal Lahir"
                     required
@@ -59,7 +59,7 @@
                   ></b-form-input>            
                 </b-form-group>
                 <b-form-group>
-                  <b-button variant="primary">Register</b-button>
+                  <b-button variant="primary" @click="kirim">Register</b-button>
                 </b-form-group>
               </b-form>
             </b-card-text>
@@ -73,6 +73,7 @@
 <script>
 import Vue from 'vue';
 import { BContainer, FormPlugin } from 'bootstrap-vue';
+import moment from 'moment'
 
 Vue.component('b-container', BContainer)
 Vue.use(FormPlugin)
@@ -84,12 +85,25 @@ export default {
       nama: '',
       jk: '',
       tanggalLahir: '',
-      freshgrad: '',
+      freshgrad: 0,
       username: '',
       password: '',
       re_password: ''
     }
   },
-  methods: {}
+  methods: {
+    kirim () {
+      // validasi umur
+      let dateAwal = moment().format('L');
+      let dateAkhir = moment(this.tanggalLahir).format('L')
+      dateAwal = moment(dateAwal)
+      dateAkhir = moment(dateAkhir)
+      let selisihTahun = dateAwal.diff(dateAkhir, 'years')
+      if(selisihTahun < 20)
+      {
+        alert('dibawah umur')
+      }
+    }
+  }
 }
 </script>
