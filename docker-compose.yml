@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+
+  api:
+    container_name: bpjs-api
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    depends_on:
+     - db
+    ports:
+     - 8000:8000
+  
+  web:
+    container_name: bpjs-web
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    ports:
+     - 7000:7000
+
+  db:
+    container_name: bpjs-db
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: vue_form
+  
+  adminer:
+    container_name: bpjs-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
