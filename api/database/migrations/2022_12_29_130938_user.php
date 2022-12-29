@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('jenis_kelamin', 1);
             $table->string('tgl_lahir', 10);
             $table->tinyInteger('fresh_graduated')->nullable();
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('password');
         });
     }

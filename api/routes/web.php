@@ -1,3 +1,4 @@
 <?php
 
-$router->post('/register', 'RegisterController@register');
+$router->post('/register', 'UserController@register');
+$router->post('/login', 'UserController@login');
