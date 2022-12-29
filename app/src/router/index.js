@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import RegistrationForm from '../views/RegistrationForm.vue'
+import HomeView from '../views/HomeView'
 
 Vue.use(VueRouter)
 
@@ -11,9 +12,14 @@ const routes = [
     component: RegistrationForm
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/LoginForm.vue')
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: HomeView
   }
 ]
 
