@@ -9,12 +9,20 @@ class RegisterController extends Controller
 {
     public function register(Request $request)
     {
-        $nama = $request->nama;
-        $jk = $request->jk;
-        $tglLahir = $request->tglLahir;
-        $freshgrad = $request->freshGrad;
-        $username = $request->username;
-        $password = $request->password;
+        $nama       = $request->nama;
+        $jk         = $request->jk;
+        $tglLahir   = $request->tglLahir;
+        $freshgrad  = $request->freshGrad;
+        $username   = $request->username;
+        $password   = $request->password;
+
+        $cariUser = UserModel::where('nama', $nama)->get();
+
+        if(count($cariUser) > 0) {
+            return response()->json([
+                'message' => 'exist'
+            ]);
+        }
 
         $create = UserModel::create([
             'nama' => $nama,
