@@ -111,8 +111,10 @@ export default {
         ).then(response => {
           let data = response.data
           let message = data.message
-          if(message == "registered")
+          if(message == "registered") {
             alert("berhasil registrasi")
+            this.$router.push('/home')
+          }
           else if(message == "user exist")
             alert("nama sudah digunakan")
           else if(message == "username exist")
