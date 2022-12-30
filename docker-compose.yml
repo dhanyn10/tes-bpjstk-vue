@@ -3,9 +3,7 @@ services:
 
   api:
     container_name: bpjs-api
-    build:
-      context: .
-      dockerfile: ./api/Dockerfile
+    build: ./api
     depends_on:
      - db
     ports:
@@ -13,11 +11,9 @@ services:
   
   web:
     container_name: bpjs-web
-    build:
-      context: .
-      dockerfile: ./app/Dockerfile
+    build: ./app
     ports:
-     - 7000:7000
+     - 8080:8080
 
   db:
     container_name: bpjs-db
@@ -33,4 +29,4 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 7000:7000
